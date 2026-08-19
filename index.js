@@ -37,11 +37,15 @@ module.exports = app;
 
 console.log('JWT_SECRET:', process.env.JWT_SECRET);
 console.log('JWT_EXPIRES_IN:', process.env.JWT_EXPIRES);
+
 async function startServer() {
     await connectDatabase();
+
     app.listen(PORT, () => {
         console.log(`Server running at http://localhost:${PORT}`);
     });
 }
 
-startServer();
+if (require.main === module) {
+    startServer();
+}
